@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pratik ❤️ Rutuja | Our Story</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at top, #1a0026, #000);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            margin-top: 80px;
+            font-size: 55px;
+            text-shadow: 0 0 20px pink;
+        }
+
+        .ring {
+            font-size: 60px;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px gold; }
+            to { text-shadow: 0 0 40px orange; }
+        }
+
+        .date-main {
+            font-size: 28px;
+            color: gold;
+            margin-bottom: 40px;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .event {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255, 0, 150, 0.4);
+            transform: scale(0.9);
+            transition: 0.5s;
+        }
+
+        .event:hover {
+            transform: scale(1);
+            box-shadow: 0 0 30px rgba(255, 0, 150, 0.8);
+        }
+
+        .event h3 {
+            color: #ff66cc;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin: 50px 0;
+            padding: 18px 40px;
+            font-size: 22px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff0066, #ffcc00);
+            color: white;
+            box-shadow: 0 0 25px #ff00ff;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-500px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Pratik ❤️ Rutuja</h1>
+<div class="ring">💍</div>
+<div class="date-main">Ring Ceremony – 26 April</div>
+
+<h2>✨ Our Love Story ✨</h2>
+
+<div class="timeline">
+
+    <div class="event">
+        <h3>🌸 8 February</h3>
+        <p>The day we met for the first time…  
+        A simple hello that changed everything ❤️</p>
+    </div>
+
+    <div class="event">
+        <h3>💖 14 February</h3>
+        <p>On the most romantic day of the year,  
+        we declared our beautiful connection 💕</p>
+    </div>
+
+    <div class="event">
+        <h3>💍 26 April</h3>
+        <p>Now we promise forever with a ring  
+        and begin our new journey together ✨</p>
+    </div>
+
+</div>
+
+<button onclick="celebrate()">Celebrate With Us 🎆</button>
+
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<script>
+function celebrate() {
+
+    document.getElementById("music").play();
+
+    let duration = 3 * 1000;
+    let end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 6,
+            angle: 60,
+            spread: 100,
+            origin: { x: 0 }
+        });
+        confetti({
+            particleCount: 6,
+            angle: 120,
+            spread: 100,
+            origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+
+    confetti({
+        particleCount: 200,
+        spread: 160,
+        origin: { y: 0.6 }
+    });
+
+    for (let i = 0; i < 40; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+}
+</script>
+
+</body>
+</html>
