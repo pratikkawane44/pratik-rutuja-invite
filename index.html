@@ -1,7 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pratik ❤️ Rutuja</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#0f001a,#1f0033,#000);
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* Title */
+h1{
+    margin-top:60px;
+    font-size:45px;
+    background: linear-gradient(90deg,#ff4da6,#ffcc00);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ff4da6;}
+    to{ text-shadow:0 0 25px #ffcc00;}
+}
+
+.date{
+    color:gold;
+    margin-bottom:30px;
+    font-size:20px;
+}
+
+/* Glass Card */
+.card{
+    width:85%;
+    max-width:700px;
+    margin:auto;
+    padding:30px;
+    border-radius:25px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 40px rgba(255,0,150,0.4);
+    position:relative;
+}
+
+.photo img{
+    width:260px;
+    border-radius:20px;
+    margin:20px 0;
+    box-shadow:0 0 25px #ff4da6;
+    transition:0.4s;
+}
+
+.photo img:hover{
+    transform:scale(1.05);
+}
+
+.timeline{
+    line-height:1.8;
+    margin-top:15px;
+}
+
+.timeline h3{
+    color:#ff66cc;
+}
+
+button{
+    margin-top:25px;
+    padding:15px 40px;
+    font-size:18px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff0066,#ffcc00);
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 20px #ff00ff;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* Floating hearts animation */
+@keyframes floatUp{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-500px);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Pratik ❤️ Rutuja</h1>
+<div class="date">Ring Ceremony – 26 April 💍</div>
+
+<div class="card">
+
+<div class="photo">
+<img src="our-love.jpg" alt="Our Love">
+</div>
+
+<div class="timeline">
+<h3>🌸 8 February</h3>
+<p>The day we met for the first time ❤️</p>
+
+<h3>💖 14 February</h3>
+<p>We declared our beautiful connection 💕</p>
+
+<h3>💍 26 April</h3>
+<p>Beginning our forever journey together ✨</p>
+</div>
+
+<button onclick="celebrate()">Celebrate With Us 🎆</button>
+
+</div>
+
+<audio id="music" src="romantic.mp3"></audio>
+
 <script>
 
 function celebrate(){
 
+/* 🎵 Music from 46 sec */
 let music = document.getElementById("music");
 music.volume = 0.4;
 
@@ -15,41 +143,39 @@ if (music.readyState >= 1) {
     });
 }
 
-/* Create little boy */
+/* 👦 Little Boy Walking */
 let boy = document.createElement("div");
 boy.innerHTML = "👦";
 boy.style.position = "fixed";
-boy.style.bottom = "50px";
-boy.style.left = "-50px";
-boy.style.fontSize = "40px";
+boy.style.bottom = "60px";
+boy.style.left = "-60px";
+boy.style.fontSize = "45px";
 boy.style.transition = "left 2s linear";
 document.body.appendChild(boy);
 
-/* Walk animation */
 setTimeout(()=>{
-    boy.style.left = "45%";
+    boy.style.left = "48%";
 },100);
 
-/* After walking, light cracker */
+/* After reaching, light spark + fireworks */
 setTimeout(()=>{
 
-    /* Spark effect */
     let spark = document.createElement("div");
     spark.innerHTML = "✨";
     spark.style.position = "fixed";
-    spark.style.bottom = "90px";
-    spark.style.left = "50%";
-    spark.style.fontSize = "25px";
+    spark.style.bottom = "110px";
+    spark.style.left = "52%";
+    spark.style.fontSize = "28px";
     document.body.appendChild(spark);
 
-    /* Firecracker blast */
+    /* Main Fireworks */
     confetti({
-        particleCount:200,
-        spread:140,
+        particleCount:180,
+        spread:130,
         origin:{y:0.6}
     });
 
-    /* Rocket bursts */
+    /* Rocket Bursts */
     for(let i=0;i<4;i++){
         setTimeout(()=>{
             confetti({
@@ -60,14 +186,14 @@ setTimeout(()=>{
         },i*400);
     }
 
-    /* Floating hearts */
+    /* Floating Hearts */
     for(let i=0;i<20;i++){
         let heart=document.createElement("div");
         heart.innerHTML="💖";
         heart.style.position="fixed";
         heart.style.left=Math.random()*window.innerWidth+"px";
         heart.style.top=window.innerHeight+"px";
-        heart.style.fontSize="20px";
+        heart.style.fontSize="22px";
         heart.style.animation="floatUp 4s linear forwards";
         document.body.appendChild(heart);
         setTimeout(()=>{heart.remove();},4000);
@@ -77,14 +203,7 @@ setTimeout(()=>{
 
 }
 
-/* Floating animation */
-let style = document.createElement('style');
-style.innerHTML = `
-@keyframes floatUp{
-    from{transform:translateY(0);opacity:1;}
-    to{transform:translateY(-500px);opacity:0;}
-}
-`;
-document.head.appendChild(style);
-
 </script>
+
+</body>
+</html>
