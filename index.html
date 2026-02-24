@@ -13,7 +13,6 @@ body{
     background: linear-gradient(135deg,#0f001a,#1f0033,#000);
     color:white;
     text-align:center;
-    overflow:hidden;
 }
 
 /* Title */
@@ -23,56 +22,57 @@ h1{
     background: linear-gradient(90deg,#ff4da6,#ffcc00);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    animation: glow 2s infinite alternate;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px #ff4da6;}
-    to{ text-shadow:0 0 25px #ffcc00;}
-}
-
-.date{
+.date-main{
     color:gold;
-    margin-bottom:30px;
     font-size:20px;
+    margin-bottom:30px;
 }
 
-/* Glass Card */
-.card{
-    width:85%;
-    max-width:700px;
+/* Main Card */
+.container{
+    width:90%;
+    max-width:800px;
     margin:auto;
-    padding:30px;
-    border-radius:25px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 40px rgba(255,0,150,0.4);
-    position:relative;
 }
 
+/* Photo */
 .photo img{
-    width:260px;
+    width:280px;
     border-radius:20px;
+    box-shadow:0 0 30px rgba(255,0,150,0.6);
     margin:20px 0;
-    box-shadow:0 0 25px #ff4da6;
+}
+
+/* Date Cards Section */
+.timeline{
+    margin-top:30px;
+}
+
+.timeline-card{
+    background: rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:20px;
+    padding:20px;
+    margin:20px 0;
+    box-shadow:0 0 20px rgba(255,0,150,0.3);
     transition:0.4s;
 }
 
-.photo img:hover{
-    transform:scale(1.05);
+.timeline-card:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 30px rgba(255,0,150,0.6);
 }
 
-.timeline{
-    line-height:1.8;
-    margin-top:15px;
-}
-
-.timeline h3{
+.timeline-card h3{
     color:#ff66cc;
+    margin-bottom:10px;
 }
 
+/* Button */
 button{
-    margin-top:25px;
+    margin-top:30px;
     padding:15px 40px;
     font-size:18px;
     border:none;
@@ -81,14 +81,13 @@ button{
     color:white;
     cursor:pointer;
     box-shadow:0 0 20px #ff00ff;
-    transition:0.3s;
 }
 
 button:hover{
     transform:scale(1.1);
 }
 
-/* Floating hearts animation */
+/* Floating Hearts */
 @keyframes floatUp{
     from{transform:translateY(0);opacity:1;}
     to{transform:translateY(-500px);opacity:0;}
@@ -100,23 +99,31 @@ button:hover{
 <body>
 
 <h1>Pratik ❤️ Rutuja</h1>
-<div class="date">Ring Ceremony – 26 April 💍</div>
+<div class="date-main">Ring Ceremony – 26 April 💍</div>
 
-<div class="card">
+<div class="container">
 
 <div class="photo">
 <img src="our-love.jpg" alt="Our Love">
 </div>
 
 <div class="timeline">
+
+<div class="timeline-card">
 <h3>🌸 8 February</h3>
 <p>The day we met for the first time ❤️</p>
+</div>
 
+<div class="timeline-card">
 <h3>💖 14 February</h3>
 <p>We declared our beautiful connection 💕</p>
+</div>
 
+<div class="timeline-card">
 <h3>💍 26 April</h3>
 <p>Beginning our forever journey together ✨</p>
+</div>
+
 </div>
 
 <button onclick="celebrate()">Celebrate With Us 🎆</button>
@@ -129,77 +136,41 @@ button:hover{
 
 function celebrate(){
 
-/* 🎵 Music from 46 sec */
 let music = document.getElementById("music");
-music.volume = 0.4;
+music.volume = 0.5;
+music.currentTime = 46;
+music.play();
 
-if (music.readyState >= 1) {
-    music.currentTime = 46;
-    music.play();
-} else {
-    music.addEventListener("loadedmetadata", function () {
-        music.currentTime = 46;
-        music.play();
-    });
+/* Main Firework */
+confetti({
+    particleCount:150,
+    spread:120,
+    origin:{y:0.6}
+});
+
+/* Rocket bursts */
+for(let i=0;i<4;i++){
+    setTimeout(()=>{
+        confetti({
+            particleCount:70,
+            spread:100,
+            origin:{x:Math.random(),y:1}
+        });
+    },i*400);
 }
 
-/* 👦 Little Boy Walking */
-let boy = document.createElement("div");
-boy.innerHTML = "👦";
-boy.style.position = "fixed";
-boy.style.bottom = "60px";
-boy.style.left = "-60px";
-boy.style.fontSize = "45px";
-boy.style.transition = "left 2s linear";
-document.body.appendChild(boy);
-
-setTimeout(()=>{
-    boy.style.left = "48%";
-},100);
-
-/* After reaching, light spark + fireworks */
-setTimeout(()=>{
-
-    let spark = document.createElement("div");
-    spark.innerHTML = "✨";
-    spark.style.position = "fixed";
-    spark.style.bottom = "110px";
-    spark.style.left = "52%";
-    spark.style.fontSize = "28px";
-    document.body.appendChild(spark);
-
-    /* Main Fireworks */
-    confetti({
-        particleCount:180,
-        spread:130,
-        origin:{y:0.6}
-    });
-
-    /* Rocket Bursts */
-    for(let i=0;i<4;i++){
-        setTimeout(()=>{
-            confetti({
-                particleCount:80,
-                spread:100,
-                origin:{x:Math.random(),y:1}
-            });
-        },i*400);
-    }
-
-    /* Floating Hearts */
-    for(let i=0;i<20;i++){
-        let heart=document.createElement("div");
-        heart.innerHTML="💖";
-        heart.style.position="fixed";
-        heart.style.left=Math.random()*window.innerWidth+"px";
-        heart.style.top=window.innerHeight+"px";
-        heart.style.fontSize="22px";
-        heart.style.animation="floatUp 4s linear forwards";
-        document.body.appendChild(heart);
-        setTimeout(()=>{heart.remove();},4000);
-    }
-
-},2000);
+/* Floating hearts */
+for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.innerHTML="💖";
+    heart.style.position="fixed";
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    heart.style.top=window.innerHeight+"px";
+    heart.style.fontSize="22px";
+    heart.style.animation="floatUp 4s linear forwards";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},4000);
+}
 
 }
 
