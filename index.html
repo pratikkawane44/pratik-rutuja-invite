@@ -33,17 +33,17 @@ h1{
 /* Main container */
 .container{
     width:90%;
-    max-width:800px;
+    max-width:900px;
     margin:auto;
 }
 
-/* Photo */
+/* PHOTO (Bigger Now) */
 .photo img{
-    width:300px;
-    max-width:90%;
-    border-radius:20px;
-    margin:20px 0;
-    box-shadow:0 0 30px rgba(255,0,150,0.6);
+    width:400px;          /* Increased size */
+    max-width:95%;
+    border-radius:25px;
+    margin:30px 0;
+    box-shadow:0 0 40px rgba(255,0,150,0.7);
     transition:0.4s;
 }
 
@@ -127,9 +127,16 @@ button:hover{
 
 </div>
 
+<!-- 🎵 ADD YOUR SONG FILE NAME HERE -->
+<audio id="music" src="romantic.mp4"></audio>
+
 <script>
 
 function celebrate(){
+
+let music = document.getElementById("music");
+music.volume = 0.7;
+music.play();   // plays from start
 
 confetti({
     particleCount:180,
