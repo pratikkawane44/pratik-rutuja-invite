@@ -10,27 +10,27 @@
 body{
     margin:0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#0f001a,#1f0033,#000);
-    color:white;<audio id="music" src="romantic.mp4"></audio>
+    background: linear-gradient(135deg,#1a0026,#000);
+    color:white;
     text-align:center;
 }
 
-/* Title */
+/* Header */
 h1{
-    margin-top:60px;
-    font-size:45px;
+    margin-top:50px;
+    font-size:42px;
     background: linear-gradient(90deg,#ff4da6,#ffcc00);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
-.date-main{
+.subtitle{
     color:gold;
     font-size:20px;
     margin-bottom:30px;
 }
 
-/* Main Card */
+/* Main container */
 .container{
     width:90%;
     max-width:800px;
@@ -39,19 +39,21 @@ h1{
 
 /* Photo */
 .photo img{
-    width:280px;
+    width:300px;
+    max-width:90%;
     border-radius:20px;
-    box-shadow:0 0 30px rgba(255,0,150,0.6);
     margin:20px 0;
+    box-shadow:0 0 30px rgba(255,0,150,0.6);
+    transition:0.4s;
 }
 
-/* Date Cards Section */
-.timeline{
-    margin-top:30px;
+.photo img:hover{
+    transform:scale(1.05);
 }
 
-.timeline-card{
-    background: rgba(255,255,255,0.08);
+/* Date cards */
+.card{
+    background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.2);
     border-radius:20px;
     padding:20px;
@@ -60,19 +62,18 @@ h1{
     transition:0.4s;
 }
 
-.timeline-card:hover{
+.card:hover{
     transform:scale(1.03);
     box-shadow:0 0 30px rgba(255,0,150,0.6);
 }
 
-.timeline-card h3{
+.card h3{
     color:#ff66cc;
-    margin-bottom:10px;
 }
 
 /* Button */
 button{
-    margin-top:30px;
+    margin:30px;
     padding:15px 40px;
     font-size:18px;
     border:none;
@@ -87,7 +88,7 @@ button:hover{
     transform:scale(1.1);
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 @keyframes floatUp{
     from{transform:translateY(0);opacity:1;}
     to{transform:translateY(-500px);opacity:0;}
@@ -99,51 +100,39 @@ button:hover{
 <body>
 
 <h1>Pratik ❤️ Rutuja</h1>
-<div class="date-main">Ring Ceremony – 26 April 💍</div>
+<div class="subtitle">Ring Ceremony – 26 April 💍</div>
 
 <div class="container">
 
 <div class="photo">
-<img src="our-love.jpg" alt="Our Love">
+    <img src="our-love.png" alt="Our Love">
 </div>
 
-<div class="timeline">
-
-<div class="timeline-card">
-<h3>🌸 8 February</h3>
-<p>The day we met for the first time ❤️</p>
+<div class="card">
+    <h3>🌸 8 February</h3>
+    <p>The day we met for the first time ❤️</p>
 </div>
 
-<div class="timeline-card">
-<h3>💖 14 February</h3>
-<p>We declared our beautiful connection 💕</p>
+<div class="card">
+    <h3>💖 14 February</h3>
+    <p>We declared our beautiful connection 💕</p>
 </div>
 
-<div class="timeline-card">
-<h3>💍 26 April</h3>
-<p>Beginning our forever journey together ✨</p>
-</div>
-
+<div class="card">
+    <h3>💍 26 April</h3>
+    <p>Beginning our forever journey together ✨</p>
 </div>
 
 <button onclick="celebrate()">Celebrate With Us 🎆</button>
 
 </div>
 
-<audio id="music" src="romantic.mp3"></audio>
-
 <script>
 
 function celebrate(){
 
-let music = document.getElementById("music");
-music.volume = 0.5;
-music.currentTime = 46;
-music.play();
-
-/* Main Firework */
 confetti({
-    particleCount:150,
+    particleCount:180,
     spread:120,
     origin:{y:0.6}
 });
@@ -152,7 +141,7 @@ confetti({
 for(let i=0;i<4;i++){
     setTimeout(()=>{
         confetti({
-            particleCount:70,
+            particleCount:80,
             spread:100,
             origin:{x:Math.random(),y:1}
         });
@@ -178,4 +167,3 @@ for(let i=0;i<20;i++){
 
 </body>
 </html>
-
