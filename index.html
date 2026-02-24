@@ -30,16 +30,16 @@ h1{
     margin-bottom:30px;
 }
 
-/* Main container */
+/* Container */
 .container{
     width:90%;
     max-width:900px;
     margin:auto;
 }
 
-/* PHOTO (Bigger Now) */
+/* PHOTO (Big) */
 .photo img{
-    width:400px;          /* Increased size */
+    width:400px;
     max-width:95%;
     border-radius:25px;
     margin:30px 0;
@@ -51,7 +51,7 @@ h1{
     transform:scale(1.05);
 }
 
-/* Date cards */
+/* Date Cards */
 .card{
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.2);
@@ -88,7 +88,7 @@ button:hover{
     transform:scale(1.1);
 }
 
-/* Floating hearts */
+/* Floating hearts animation */
 @keyframes floatUp{
     from{transform:translateY(0);opacity:1;}
     to{transform:translateY(-500px);opacity:0;}
@@ -127,7 +127,7 @@ button:hover{
 
 </div>
 
-<!-- 🎵 ADD YOUR SONG FILE NAME HERE -->
+<!-- 🎵 Song -->
 <audio id="music" src="romantic.mp4"></audio>
 
 <script>
@@ -136,8 +136,19 @@ function celebrate(){
 
 let music = document.getElementById("music");
 music.volume = 0.7;
-music.play();   // plays from start
 
+/* Start from 46 seconds safely */
+if (music.readyState >= 1) {
+    music.currentTime = 46;
+    music.play();
+} else {
+    music.addEventListener("loadedmetadata", function () {
+        music.currentTime = 46;
+        music.play();
+    });
+}
+
+/* Main Firework */
 confetti({
     particleCount:180,
     spread:120,
