@@ -8,198 +8,215 @@
 <style>
 body{
 margin:0;
-font-family:'Segoe UI',sans-serif;
-background:#000;
+font-family: 'Georgia', serif;
+background: radial-gradient(circle at top,#1a001f,#000);
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
-/* 🌌 Starry Background */
+/* Star glow background */
 body::before{
 content:"";
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(white 1px, transparent 1px);
-background-size:3px 3px;
-animation:stars 80s linear infinite;
-opacity:0.2;
+background:radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+background-size:4px 4px;
+opacity:0.15;
 z-index:-1;
 }
-@keyframes stars{
-from{transform:translateY(0);}
-to{transform:translateY(-1500px);}
-}
 
-/* Cinematic Intro */
-#intro{
+/* NAME ENTRY SCREEN */
+#nameScreen{
 position:fixed;
 width:100%;
 height:100%;
-background:black;
+background:#000;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 z-index:999;
-animation:fadeOut 4s ease 3s forwards;
 }
-#intro h1{
-font-size:50px;
-background:linear-gradient(90deg,#ff4da6,#ffcc00);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:zoomIn 3s ease forwards;
+
+#nameScreen h2{
+font-size:28px;
+color:#ffdf80;
+margin-bottom:20px;
 }
-@keyframes fadeOut{
-to{opacity:0;visibility:hidden;}
+
+#nameScreen input{
+padding:12px;
+border-radius:10px;
+border:none;
+width:250px;
+text-align:center;
+font-size:16px;
 }
-@keyframes zoomIn{
-from{transform:scale(0.5);opacity:0;}
-to{transform:scale(1);opacity:1;}
+
+#nameScreen button{
+margin-top:15px;
+padding:10px 25px;
+border:none;
+border-radius:25px;
+background:linear-gradient(45deg,#d4af37,#ffdf80);
+cursor:pointer;
+}
+
+/* Welcome message */
+#welcomeMsg{
+display:none;
+font-size:26px;
+margin-top:40px;
+animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 /* Ganesh */
-.ganesh{
-margin-top:30px;
-}
 .ganesh img{
-width:120px;
-opacity:0.9;
+width:110px;
+margin-top:30px;
+filter: drop-shadow(0 0 10px gold);
+}
+
+/* Name */
+.main-name{
+font-size:48px;
+margin-top:20px;
+background:linear-gradient(90deg,#d4af37,#ffdf80,#d4af37);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 /* Section */
 .section{
-margin:30px auto;
 width:90%;
 max-width:900px;
-background:rgba(255,255,255,0.08);
-padding:20px;
-border-radius:20px;
-backdrop-filter:blur(10px);
+margin:40px auto;
+padding:30px;
+border-radius:25px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+box-shadow:0 0 40px rgba(212,175,55,0.3);
 }
 
-/* Hero Photo */
 .hero img{
-width:420px;
+width:450px;
 max-width:95%;
 border-radius:25px;
-box-shadow:0 0 40px #ff4da6;
-}
-
-/* Basuri */
-.basuri img{
-width:250px;
-margin-top:15px;
-opacity:0.85;
+box-shadow:0 0 50px rgba(212,175,55,0.5);
 }
 
 /* Countdown */
 .countdown{
 display:flex;
 justify-content:center;
-gap:15px;
+gap:20px;
 flex-wrap:wrap;
+margin-top:20px;
 }
+
 .time-box{
-background:linear-gradient(45deg,#ff0066,#ffcc00);
+background:linear-gradient(45deg,#d4af37,#ffdf80);
+color:black;
 padding:15px;
 border-radius:15px;
-width:80px;
+width:90px;
+font-weight:bold;
 }
-.time-box h2{margin:0}
 
 /* Button */
 button{
-margin:20px;
-padding:12px 30px;
+margin-top:20px;
+padding:14px 35px;
 border:none;
 border-radius:30px;
-background:linear-gradient(45deg,#ff0066,#ffcc00);
-color:white;
+background:linear-gradient(45deg,#d4af37,#ffdf80);
+color:black;
+font-weight:bold;
 cursor:pointer;
 }
 
-/* Sparkle */
-.sparkle{
-position:fixed;
-font-size:18px;
-animation:floatUp 4s linear forwards;
-}
-@keyframes floatUp{
-from{transform:translateY(0);opacity:1;}
-to{transform:translateY(-400px);opacity:0;}
-}
 </style>
 </head>
 
 <body>
 
-<div id="intro">
-<h1>Pratik ❤️ Rutuja</h1>
-<p>Two Souls • One Journey • Forever</p>
+<!-- Name Entry -->
+<div id="nameScreen">
+<h2>May we know your name? 💖</h2>
+<input type="text" id="guestName" placeholder="Enter your name">
+<button onclick="enterSite()">Enter</button>
 </div>
+
+<div id="mainContent" style="display:none;">
 
 <div class="ganesh">
 <img src="ganpati.webp">
 </div>
+
+<div class="main-name">
+Pratik ❤️ Rutuja
+</div>
+
+<div id="welcomeMsg"></div>
 
 <div class="section hero">
 <img src="our-love.png">
 </div>
 
 <div class="section">
-<h2>Our Beautiful Journey</h2>
+<h2>Our Journey</h2>
 <p>🌸 8 February — The day we met for the first time ❤️</p>
 <p>💖 14 February — We declared our beautiful connection 💕</p>
 <p>💍 26 April — Beginning our forever journey together ✨</p>
 </div>
 
-<div class="section basuri">
-<h3>Divine Love Blessings 🎋</h3>
-<img src="basuri.jfif">
-</div>
-
 <div class="section">
-<h3>📍 Venue</h3>
+<h2>Venue</h2>
 <p><b>Renuka Banquet</b><br>
 Motinagar Main Rd, beside Datta Mandir,<br>
 Pusad, Maharashtra 445204</p>
 <a href="https://maps.app.goo.gl/SBVoCr5JrcQsXhw3A?g_st=aw" target="_blank">
-<button>Open in Google Maps 🗺</button>
+<button>Open in Google Maps</button>
 </a>
 </div>
 
 <div class="section">
-<h3>⏳ Countdown to 26 April | 11:00 AM</h3>
+<h2>Countdown</h2>
 <div class="countdown">
-<div class="time-box"><h2 id="days"></h2><small>Days</small></div>
-<div class="time-box"><h2 id="hours"></h2><small>Hours</small></div>
-<div class="time-box"><h2 id="minutes"></h2><small>Minutes</small></div>
-<div class="time-box"><h2 id="seconds"></h2><small>Seconds</small></div>
+<div class="time-box"><div id="days"></div>Days</div>
+<div class="time-box"><div id="hours"></div>Hours</div>
+<div class="time-box"><div id="minutes"></div>Minutes</div>
+<div class="time-box"><div id="seconds"></div>Seconds</div>
 </div>
-</div>
-
-<div class="section">
-<h3>📝 RSVP</h3>
-<form id="rsvpForm">
-<input type="text" name="name" placeholder="Your Name" required><br>
-<select name="attending" required>
-<option value="">Will you attend?</option>
-<option>Yes 💖</option>
-<option>No 😔</option>
-</select><br>
-<button type="submit">Submit</button>
-</form>
-<p id="responseMessage"></p>
 </div>
 
 <button onclick="celebrate()">Celebrate With Us 🎆</button>
 
 <audio id="music" src="romantic.mp4"></audio>
 
+</div>
+
 <script>
+
+/* Name entry logic */
+function enterSite(){
+let name=document.getElementById("guestName").value;
+if(name.trim()=="") return;
+
+document.getElementById("nameScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+
+document.getElementById("welcomeMsg").style.display="block";
+document.getElementById("welcomeMsg").innerHTML=
+"✨ Welcome <b>"+name+"</b> 💖<br>We are waiting for you with love 💍";
+}
 
 /* Countdown */
 let eventDate=new Date("April 26, 2026 11:00:00").getTime();
@@ -223,27 +240,8 @@ music.play();
 musicStarted=true;
 }
 confetti({particleCount:200,spread:120,origin:{y:0.6}});
-for(let i=0;i<20;i++){
-let spark=document.createElement("div");
-spark.innerHTML="✨";
-spark.classList.add("sparkle");
-spark.style.left=Math.random()*window.innerWidth+"px";
-spark.style.top=window.innerHeight+"px";
-document.body.appendChild(spark);
-setTimeout(()=>{spark.remove();},4000);
-}
 }
 
-/* RSVP Google Sheet Integration */
-document.getElementById("rsvpForm").addEventListener("submit",function(e){
-e.preventDefault();
-fetch("YOUR_GOOGLE_SCRIPT_URL_HERE",{
-method:"POST",
-body:new FormData(this)
-})
-.then(response=>document.getElementById("responseMessage").innerText="Thank you! RSVP received 💖")
-.catch(error=>alert("Error submitting form"));
-});
 </script>
 
 </body>
