@@ -7,128 +7,161 @@
 
 <style>
 body{
-    margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background:#000;
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#000;
+color:white;
+text-align:center;
+overflow-x:hidden;
 }
 
 /* 🌌 Starry Background */
 body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:radial-gradient(white 1px, transparent 1px);
-    background-size:3px 3px;
-    animation:stars 50s linear infinite;
-    opacity:0.2;
-    z-index:-1;
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(white 1px, transparent 1px);
+background-size:3px 3px;
+animation:stars 80s linear infinite;
+opacity:0.2;
+z-index:-1;
 }
 @keyframes stars{
-    from{transform:translateY(0);}
-    to{transform:translateY(-1000px);}
+from{transform:translateY(0);}
+to{transform:translateY(-1500px);}
 }
 
-/* Fade In Intro */
-.fade{
-    opacity:0;
-    transform:translateY(20px);
-    transition:1.5s ease;
+/* Cinematic Intro */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+animation:fadeOut 4s ease 3s forwards;
 }
-.fade.show{
-    opacity:1;
-    transform:translateY(0);
+#intro h1{
+font-size:50px;
+background:linear-gradient(90deg,#ff4da6,#ffcc00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:zoomIn 3s ease forwards;
+}
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
+}
+@keyframes zoomIn{
+from{transform:scale(0.5);opacity:0;}
+to{transform:scale(1);opacity:1;}
 }
 
-h1{
-    margin-top:40px;
-    font-size:42px;
-    background:linear-gradient(90deg,#ff4da6,#ffcc00);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+/* Ganesh */
+.ganesh{
+margin-top:30px;
+}
+.ganesh img{
+width:120px;
+opacity:0.9;
 }
 
-/* Photo */
-.photo img{
-    width:420px;
-    max-width:95%;
-    border-radius:25px;
-    margin:20px 0;
-    box-shadow:0 0 40px #ff4da6;
+/* Section */
+.section{
+margin:30px auto;
+width:90%;
+max-width:900px;
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
 }
 
-/* Cards */
-.card{
-    background:rgba(255,255,255,0.08);
-    border-radius:20px;
-    padding:20px;
-    margin:20px auto;
-    width:90%;
-    max-width:800px;
-    backdrop-filter:blur(10px);
+/* Hero Photo */
+.hero img{
+width:420px;
+max-width:95%;
+border-radius:25px;
+box-shadow:0 0 40px #ff4da6;
+}
+
+/* Basuri */
+.basuri img{
+width:250px;
+margin-top:15px;
+opacity:0.85;
 }
 
 /* Countdown */
 .countdown{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
 }
 .time-box{
-    background:linear-gradient(45deg,#ff0066,#ffcc00);
-    padding:15px;
-    border-radius:15px;
-    width:80px;
+background:linear-gradient(45deg,#ff0066,#ffcc00);
+padding:15px;
+border-radius:15px;
+width:80px;
 }
 .time-box h2{margin:0}
 
 /* Button */
 button{
-    margin:20px;
-    padding:12px 30px;
-    border:none;
-    border-radius:30px;
-    background:linear-gradient(45deg,#ff0066,#ffcc00);
-    color:white;
-    cursor:pointer;
+margin:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff0066,#ffcc00);
+color:white;
+cursor:pointer;
 }
 
-/* Sparkles */
+/* Sparkle */
 .sparkle{
-    position:fixed;
-    font-size:18px;
-    animation:floatUp 4s linear forwards;
+position:fixed;
+font-size:18px;
+animation:floatUp 4s linear forwards;
 }
 @keyframes floatUp{
-    from{transform:translateY(0);opacity:1;}
-    to{transform:translateY(-400px);opacity:0;}
-}
-
-/* RSVP */
-input,select{
-    padding:10px;
-    margin:8px;
-    border-radius:8px;
-    border:none;
-    width:80%;
-    max-width:300px;
+from{transform:translateY(0);opacity:1;}
+to{transform:translateY(-400px);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<h1 class="fade">Pratik ❤️ Rutuja</h1>
+<div id="intro">
+<h1>Pratik ❤️ Rutuja</h1>
+<p>Two Souls • One Journey • Forever</p>
+</div>
 
-<div class="photo fade">
+<div class="ganesh">
+<img src="ganpati.webp">
+</div>
+
+<div class="section hero">
 <img src="our-love.png">
 </div>
 
-<div class="card fade">
+<div class="section">
+<h2>Our Beautiful Journey</h2>
+<p>🌸 8 February — The day we met for the first time ❤️</p>
+<p>💖 14 February — We declared our beautiful connection 💕</p>
+<p>💍 26 April — Beginning our forever journey together ✨</p>
+</div>
+
+<div class="section basuri">
+<h3>Divine Love Blessings 🎋</h3>
+<img src="basuri.jfif">
+</div>
+
+<div class="section">
 <h3>📍 Venue</h3>
 <p><b>Renuka Banquet</b><br>
 Motinagar Main Rd, beside Datta Mandir,<br>
@@ -138,7 +171,7 @@ Pusad, Maharashtra 445204</p>
 </a>
 </div>
 
-<div class="card fade">
+<div class="section">
 <h3>⏳ Countdown to 26 April | 11:00 AM</h3>
 <div class="countdown">
 <div class="time-box"><h2 id="days"></h2><small>Days</small></div>
@@ -148,17 +181,18 @@ Pusad, Maharashtra 445204</p>
 </div>
 </div>
 
-<div class="card fade">
+<div class="section">
 <h3>📝 RSVP</h3>
-<form>
-<input type="text" placeholder="Your Name" required><br>
-<select required>
+<form id="rsvpForm">
+<input type="text" name="name" placeholder="Your Name" required><br>
+<select name="attending" required>
 <option value="">Will you attend?</option>
 <option>Yes 💖</option>
 <option>No 😔</option>
 </select><br>
 <button type="submit">Submit</button>
 </form>
+<p id="responseMessage"></p>
 </div>
 
 <button onclick="celebrate()">Celebrate With Us 🎆</button>
@@ -166,17 +200,6 @@ Pusad, Maharashtra 445204</p>
 <audio id="music" src="romantic.mp4"></audio>
 
 <script>
-
-/* Scroll Reveal */
-const faders=document.querySelectorAll('.fade');
-const appearOptions={threshold:0.2};
-const appearOnScroll=new IntersectionObserver(function(entries){
-entries.forEach(entry=>{
-if(!entry.isIntersecting)return;
-entry.target.classList.add('show');
-});
-},appearOptions);
-faders.forEach(fader=>appearOnScroll.observe(fader));
 
 /* Countdown */
 let eventDate=new Date("April 26, 2026 11:00:00").getTime();
@@ -189,7 +212,7 @@ document.getElementById("minutes").innerHTML=Math.floor((distance%(1000*60*60))/
 document.getElementById("seconds").innerHTML=Math.floor((distance%(1000*60))/1000);
 },1000);
 
-/* Celebrate */
+/* Celebration */
 let musicStarted=false;
 function celebrate(){
 let music=document.getElementById("music");
@@ -210,6 +233,17 @@ document.body.appendChild(spark);
 setTimeout(()=>{spark.remove();},4000);
 }
 }
+
+/* RSVP Google Sheet Integration */
+document.getElementById("rsvpForm").addEventListener("submit",function(e){
+e.preventDefault();
+fetch("YOUR_GOOGLE_SCRIPT_URL_HERE",{
+method:"POST",
+body:new FormData(this)
+})
+.then(response=>document.getElementById("responseMessage").innerText="Thank you! RSVP received 💖")
+.catch(error=>alert("Error submitting form"));
+});
 </script>
 
 </body>
