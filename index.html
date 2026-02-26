@@ -15,10 +15,9 @@ body{
     text-align:center;
 }
 
-/* Header */
 h1{
-    margin-top:50px;
-    font-size:42px;
+    margin-top:40px;
+    font-size:40px;
     background: linear-gradient(90deg,#ff4da6,#ffcc00);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
@@ -26,7 +25,6 @@ h1{
 
 .subtitle{
     color:gold;
-    font-size:20px;
     margin-bottom:30px;
 }
 
@@ -37,16 +35,16 @@ h1{
     margin:auto;
 }
 
-/* PHOTO */
+/* Photo */
 .photo img{
     width:400px;
     max-width:95%;
     border-radius:25px;
-    margin:30px 0;
+    margin:20px 0;
     box-shadow:0 0 40px rgba(255,0,150,0.7);
 }
 
-/* Date Cards */
+/* Card */
 .card{
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.2);
@@ -56,48 +54,48 @@ h1{
     box-shadow:0 0 20px rgba(255,0,150,0.3);
 }
 
-.card h3{
-    color:#ff66cc;
+/* Countdown */
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
 }
 
-/* Arrow Section */
-.click-text{
-    margin-top:30px;
-    font-size:20px;
-    color:#ffcc00;
-    animation: blink 1.5s infinite;
+.time-box{
+    background:linear-gradient(45deg,#ff0066,#ffcc00);
+    padding:15px;
+    border-radius:15px;
+    width:80px;
+    box-shadow:0 0 20px #ff00ff;
 }
 
-@keyframes blink{
-    0%{opacity:1;}
-    50%{opacity:0.5;}
-    100%{opacity:1;}
+.time-box h2{
+    margin:0;
+    font-size:24px;
 }
 
-.arrow{
-    font-size:30px;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(10px);}
+.time-box span{
+    font-size:12px;
 }
 
 /* Button */
 button{
-    margin:20px;
-    padding:15px 40px;
-    font-size:18px;
+    margin-top:15px;
+    padding:12px 30px;
     border:none;
-    border-radius:50px;
+    border-radius:30px;
     background:linear-gradient(45deg,#ff0066,#ffcc00);
     color:white;
     cursor:pointer;
-    box-shadow:0 0 20px #ff00ff;
 }
 
-/* Hearts animation */
+button:hover{
+    transform:scale(1.05);
+}
+
+/* Floating hearts */
 @keyframes floatUp{
     from{transform:translateY(0);opacity:1;}
     to{transform:translateY(-500px);opacity:0;}
@@ -109,31 +107,46 @@ button{
 <body>
 
 <h1>Pratik ❤️ Rutuja</h1>
-<div class="subtitle">Ring Ceremony – 26 April 💍</div>
+<div class="subtitle">Ring Ceremony – 26 April | 11:00 AM 💍</div>
 
 <div class="container">
 
 <div class="photo">
-    <img src="our-love.png" alt="Our Love">
+    <img src="our-love.png">
 </div>
 
 <div class="card">
-    <h3>🌸 8 February</h3>
-    <p>The day we met for the first time ❤️</p>
+    <h3>📍 Venue</h3>
+    <p><b>Renuka Banquet</b><br>
+    Motinagar Main Rd, beside Datta Mandir,<br>
+    Pusad, Maharashtra 445204</p>
+
+    <a href="https://maps.app.goo.gl/SBVoCr5JrcQsXhw3A?g_st=aw" target="_blank">
+        <button>Open in Google Maps 🗺</button>
+    </a>
 </div>
 
 <div class="card">
-    <h3>💖 14 February</h3>
-    <p>We declared our beautiful connection 💕</p>
+    <h3>⏳ Countdown to Our Special Day</h3>
+    <div class="countdown">
+        <div class="time-box">
+            <h2 id="days">0</h2>
+            <span>Days</span>
+        </div>
+        <div class="time-box">
+            <h2 id="hours">0</h2>
+            <span>Hours</span>
+        </div>
+        <div class="time-box">
+            <h2 id="minutes">0</h2>
+            <span>Minutes</span>
+        </div>
+        <div class="time-box">
+            <h2 id="seconds">0</h2>
+            <span>Seconds</span>
+        </div>
+    </div>
 </div>
-
-<div class="card">
-    <h3>💍 26 April</h3>
-    <p>Beginning our forever journey together ✨</p>
-</div>
-
-<div class="click-text">⬇ Click Here to Celebrate ⬇</div>
-<div class="arrow">⬇</div>
 
 <button onclick="celebrate()">Celebrate With Us 🎆</button>
 
@@ -143,6 +156,28 @@ button{
 
 <script>
 
+/* Countdown Logic */
+let eventDate = new Date("April 26, 2026 11:00:00").getTime();
+
+let countdownFunction = setInterval(function() {
+
+let now = new Date().getTime();
+let distance = eventDate - now;
+
+let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+}, 1000);
+
+
+/* Celebrate Function */
 let musicStarted = false;
 
 function celebrate(){
@@ -150,28 +185,18 @@ function celebrate(){
 let music = document.getElementById("music");
 music.volume = 0.7;
 
-/* Start only first time */
 if(!musicStarted){
-    if (music.readyState >= 1) {
-        music.currentTime = 46;
-        music.play();
-    } else {
-        music.addEventListener("loadedmetadata", function () {
-            music.currentTime = 46;
-            music.play();
-        });
-    }
+    music.currentTime = 46;
+    music.play();
     musicStarted = true;
 }
 
-/* Fireworks */
 confetti({
     particleCount:180,
     spread:120,
     origin:{y:0.6}
 });
 
-/* Rocket bursts */
 for(let i=0;i<4;i++){
     setTimeout(()=>{
         confetti({
@@ -180,19 +205,6 @@ for(let i=0;i<4;i++){
             origin:{x:Math.random(),y:1}
         });
     },i*400);
-}
-
-/* Floating hearts */
-for(let i=0;i<20;i++){
-    let heart=document.createElement("div");
-    heart.innerHTML="💖";
-    heart.style.position="fixed";
-    heart.style.left=Math.random()*window.innerWidth+"px";
-    heart.style.top=window.innerHeight+"px";
-    heart.style.fontSize="22px";
-    heart.style.animation="floatUp 4s linear forwards";
-    document.body.appendChild(heart);
-    setTimeout(()=>{heart.remove();},4000);
 }
 
 }
