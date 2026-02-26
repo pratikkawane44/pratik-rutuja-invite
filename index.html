@@ -8,137 +8,183 @@
 <style>
 body{
 margin:0;
-font-family: 'Georgia', serif;
-background: radial-gradient(circle at top,#1a001f,#000);
+font-family:'Segoe UI',sans-serif;
+background:radial-gradient(circle at top,#1e0f25,#0d0612);
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
-/* Star glow background */
+/* Soft star background */
 body::before{
 content:"";
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+background:radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
 background-size:4px 4px;
-opacity:0.15;
 z-index:-1;
 }
 
-/* NAME ENTRY SCREEN */
-#nameScreen{
+/* Slides */
+.slide{
 position:fixed;
 width:100%;
 height:100%;
-background:#000;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-z-index:999;
+transition:1s ease;
+background:inherit;
 }
 
-#nameScreen h2{
-font-size:28px;
-color:#ffdf80;
-margin-bottom:20px;
-}
-
-#nameScreen input{
+/* Slide 1 */
+#slide1 input{
 padding:12px;
-border-radius:10px;
+border-radius:8px;
 border:none;
 width:250px;
 text-align:center;
-font-size:16px;
 }
-
-#nameScreen button{
+#slide1 button{
 margin-top:15px;
 padding:10px 25px;
 border:none;
-border-radius:25px;
-background:linear-gradient(45deg,#d4af37,#ffdf80);
+border-radius:20px;
+background:#d6336c;
+color:white;
 cursor:pointer;
 }
 
-/* Welcome message */
-#welcomeMsg{
-display:none;
-font-size:26px;
-margin-top:40px;
-animation:fadeIn 2s ease forwards;
+/* Slide 2 */
+#slide2{ display:none; }
+
+/* Balanced Elegant Name */
+.couple-name{
+font-size:56px;
+letter-spacing:3px;
+font-weight:300;
+display:flex;
+align-items:center;
+gap:16px;
+animation:fadeInName 3.5s ease forwards;
+opacity:0;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
+.name-left{
+color:#ffffff;
+animation:slideLeft 3.5s ease forwards;
+opacity:0;
+}
+
+.name-right{
+color:#ffffff;
+animation:slideRight 3.5s ease forwards;
+opacity:0;
+}
+
+.heart{
+color:#ff2e63;
+font-size:48px;
+animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.12);}
+100%{transform:scale(1);}
+}
+
+@keyframes slideLeft{
+from{transform:translateX(-80px);opacity:0;}
+to{transform:translateX(0);opacity:1;}
+}
+
+@keyframes slideRight{
+from{transform:translateX(80px);opacity:0;}
+to{transform:translateX(0);opacity:1;}
+}
+
+@keyframes fadeInName{
 to{opacity:1;}
 }
 
-/* Ganesh */
+/* Main Content */
+#mainContent{
+display:none;
+padding-top:20px;
+}
+
 .ganesh img{
-width:110px;
-margin-top:30px;
-filter: drop-shadow(0 0 10px gold);
-}
-
-/* Name */
-.main-name{
-font-size:48px;
+width:85px;
 margin-top:20px;
-background:linear-gradient(90deg,#d4af37,#ffdf80,#d4af37);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+opacity:0.9;
 }
 
-/* Section */
 .section{
 width:90%;
-max-width:900px;
+max-width:850px;
 margin:40px auto;
 padding:30px;
-border-radius:25px;
+border-radius:20px;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-box-shadow:0 0 40px rgba(212,175,55,0.3);
+backdrop-filter:blur(10px);
 }
 
 .hero img{
-width:450px;
+width:420px;
 max-width:95%;
-border-radius:25px;
-box-shadow:0 0 50px rgba(212,175,55,0.5);
+border-radius:20px;
 }
 
 /* Countdown */
 .countdown{
 display:flex;
 justify-content:center;
-gap:20px;
+gap:15px;
 flex-wrap:wrap;
-margin-top:20px;
+}
+.time-box{
+background:#2b1b33;
+padding:15px;
+border-radius:12px;
+width:80px;
+}
+.time-box div{
+font-size:20px;
+font-weight:bold;
 }
 
-.time-box{
-background:linear-gradient(45deg,#d4af37,#ffdf80);
-color:black;
-padding:15px;
-border-radius:15px;
-width:90px;
-font-weight:bold;
+/* Arrow */
+.arrow-text{
+margin-top:30px;
+font-size:18px;
+color:#ff6b81;
+animation:fadeArrow 1.5s infinite;
+}
+@keyframes fadeArrow{
+0%{opacity:1;}
+50%{opacity:0.4;}
+100%{opacity:1;}
+}
+.arrow{
+font-size:28px;
+animation:bounce 1s infinite;
+}
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(8px);}
 }
 
 /* Button */
 button{
-margin-top:20px;
-padding:14px 35px;
+margin-top:15px;
+padding:12px 30px;
 border:none;
-border-radius:30px;
-background:linear-gradient(45deg,#d4af37,#ffdf80);
-color:black;
-font-weight:bold;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
 cursor:pointer;
 }
 
@@ -147,24 +193,30 @@ cursor:pointer;
 
 <body>
 
-<!-- Name Entry -->
-<div id="nameScreen">
+<!-- SLIDE 1 -->
+<div id="slide1" class="slide">
 <h2>May we know your name? 💖</h2>
 <input type="text" id="guestName" placeholder="Enter your name">
-<button onclick="enterSite()">Enter</button>
+<button onclick="goToSlide2()">Continue</button>
 </div>
 
-<div id="mainContent" style="display:none;">
+<!-- SLIDE 2 -->
+<div id="slide2" class="slide">
+<div class="couple-name">
+<span class="name-left">Pratik</span>
+<span class="heart">❤️</span>
+<span class="name-right">Rutuja</span>
+</div>
+<p style="margin-top:20px;font-size:20px;" id="welcomeText"></p>
+<button onclick="enterMain()">Enter Invitation</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
 
 <div class="ganesh">
 <img src="ganpati.webp">
 </div>
-
-<div class="main-name">
-Pratik ❤️ Rutuja
-</div>
-
-<div id="welcomeMsg"></div>
 
 <div class="section hero">
 <img src="our-love.png">
@@ -197,25 +249,30 @@ Pusad, Maharashtra 445204</p>
 </div>
 </div>
 
-<button onclick="celebrate()">Celebrate With Us 🎆</button>
+<div class="arrow-text">Click below to celebrate with us</div>
+<div class="arrow">⬇</div>
 
-<audio id="music" src="romantic.mp4"></audio>
+<button onclick="celebrate()">Celebrate With Us 🎆</button>
 
 </div>
 
+<audio id="music" src="romantic.mp4"></audio>
+
 <script>
 
-/* Name entry logic */
-function enterSite(){
+/* Slide Flow */
+function goToSlide2(){
 let name=document.getElementById("guestName").value;
 if(name.trim()=="") return;
+document.getElementById("slide1").style.display="none";
+document.getElementById("slide2").style.display="flex";
+document.getElementById("welcomeText").innerHTML=
+"Welcome <b>"+name+"</b> 💖<br>We are waiting for you.";
+}
 
-document.getElementById("nameScreen").style.display="none";
+function enterMain(){
+document.getElementById("slide2").style.display="none";
 document.getElementById("mainContent").style.display="block";
-
-document.getElementById("welcomeMsg").style.display="block";
-document.getElementById("welcomeMsg").innerHTML=
-"✨ Welcome <b>"+name+"</b> 💖<br>We are waiting for you with love 💍";
 }
 
 /* Countdown */
@@ -239,7 +296,7 @@ music.currentTime=46;
 music.play();
 musicStarted=true;
 }
-confetti({particleCount:200,spread:120,origin:{y:0.6}});
+confetti({particleCount:180,spread:120,origin:{y:0.6}});
 }
 
 </script>
