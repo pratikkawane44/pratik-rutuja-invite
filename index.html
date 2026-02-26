@@ -7,27 +7,46 @@
 
 <style>
 
+/* ================= GLOBAL ================= */
+
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
-background:radial-gradient(circle at top,#1e0f25,#0c0712);
-color:white;
+background:linear-gradient(180deg,#140a18,#0a050d);
+color:#f5f5f5;
 text-align:center;
 overflow-x:hidden;
 }
 
-/* Soft star background */
+/* Soft ambient glow */
 body::before{
 content:"";
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-background-size:4px 4px;
+background:
+radial-gradient(circle at 20% 30%, rgba(255,105,180,0.08), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,105,180,0.06), transparent 40%);
 z-index:-1;
 }
 
-/* Slide layout */
+/* Floating light particles */
+.particle{
+position:fixed;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+opacity:0.4;
+animation:float 20s linear infinite;
+}
+@keyframes float{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
+}
+
+/* ================= SLIDES ================= */
+
 .slide{
 position:fixed;
 width:100%;
@@ -37,55 +56,50 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 background:inherit;
-transition:0.8s ease;
+transition:1s ease;
 }
 
 /* Slide 1 */
 #slide1 input{
-padding:12px;
-border-radius:8px;
+padding:14px;
+border-radius:12px;
 border:none;
 width:260px;
 text-align:center;
-font-size:16px;
+background:rgba(255,255,255,0.08);
+color:white;
 }
 #slide1 button{
-margin-top:15px;
-padding:10px 25px;
+margin-top:20px;
+padding:12px 28px;
 border:none;
-border-radius:20px;
+border-radius:30px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
+transition:0.3s;
+}
+#slide1 button:hover{
+box-shadow:0 0 20px rgba(255,77,109,0.6);
 }
 
 /* Slide 2 */
-#slide2{ display:none; }
+#slide2{display:none;}
 
-/* Responsive Elegant Names */
 .couple-name{
-font-size:clamp(34px,6vw,52px);
+font-size:clamp(36px,6vw,54px);
 letter-spacing:2px;
-font-weight:300;
 display:flex;
+gap:14px;
 align-items:center;
 justify-content:center;
-gap:12px;
-flex-wrap:wrap;
-animation:fadeInName 3s ease forwards;
+animation:fadeIn 3s ease forwards;
 opacity:0;
-}
-
-.name-left,
-.name-right{
-opacity:0;
-animation:fadeInName 3s ease forwards;
 }
 
 .heart{
-color:#ff2e63;
-font-size:clamp(26px,5vw,44px);
-animation:pulse 1.5s infinite;
+color:#ff4d6d;
+animation:pulse 1.6s infinite;
 }
 
 @keyframes pulse{
@@ -94,96 +108,130 @@ animation:pulse 1.5s infinite;
 100%{transform:scale(1);}
 }
 
-@keyframes fadeInName{
+@keyframes fadeIn{
 to{opacity:1;}
 }
 
-/* Main Content */
+/* ================= MAIN CONTENT ================= */
+
 #mainContent{
 display:none;
 padding-top:10px;
+animation:fadeMain 2s ease forwards;
+}
+@keyframes fadeMain{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 .ganesh img{
 width:80px;
 margin-top:20px;
 opacity:0.9;
+filter:drop-shadow(0 0 10px rgba(255,105,180,0.3));
 }
 
+/* Glass Section */
 .section{
 width:90%;
-max-width:850px;
-margin:35px auto;
-padding:30px;
-border-radius:18px;
+max-width:900px;
+margin:40px auto;
+padding:35px;
+border-radius:25px;
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
-box-shadow:0 0 25px rgba(255,255,255,0.05);
+backdrop-filter:blur(18px);
+box-shadow:0 0 60px rgba(255,105,180,0.08);
+transition:0.6s;
+}
+.section:hover{
+box-shadow:0 0 80px rgba(255,105,180,0.18);
 }
 
 .hero img{
-width:420px;
+width:440px;
 max-width:95%;
-border-radius:18px;
+border-radius:20px;
+box-shadow:0 0 50px rgba(255,105,180,0.2);
 }
 
 /* Countdown */
 .countdown{
 display:flex;
 justify-content:center;
-gap:15px;
+gap:20px;
 flex-wrap:wrap;
-margin-top:15px;
+margin-top:20px;
 }
-
 .time-box{
-background:#24162d;
+background:rgba(255,255,255,0.08);
 padding:15px;
-border-radius:12px;
-width:80px;
+border-radius:15px;
+width:90px;
 }
 
-.time-box div{
-font-size:20px;
-font-weight:bold;
-}
-
-/* Arrow */
-.arrow-text{
-margin-top:25px;
-font-size:16px;
-color:#ff6b81;
-animation:fadeArrow 1.5s infinite;
-}
-@keyframes fadeArrow{
-0%{opacity:1;}
-50%{opacity:0.4;}
-100%{opacity:1;}
-}
-.arrow{
-font-size:24px;
-animation:bounce 1s infinite;
-}
-@keyframes bounce{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(6px);}
-}
-
-/* Button */
+/* Buttons */
 button{
-margin-top:15px;
-padding:12px 28px;
+padding:12px 30px;
 border:none;
-border-radius:25px;
+border-radius:30px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.yes-btn{
 background:#ff4d6d;
 color:white;
-cursor:pointer;
+}
+.yes-btn:hover{
+box-shadow:0 0 20px rgba(255,77,109,0.6);
+}
+
+.no-btn{
+background:#333;
+color:white;
+}
+.no-btn:hover{
+background:#555;
+}
+
+/* Popup */
+#popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+padding:40px;
+border-radius:25px;
+max-width:400px;
+box-shadow:0 0 60px rgba(255,105,180,0.2);
+animation:fadeIn 0.8s ease forwards;
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- Floating Particles -->
+<script>
+for(let i=0;i<40;i++){
+let p=document.createElement("div");
+p.className="particle";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(15+Math.random()*10)+"s";
+document.body.appendChild(p);
+}
+</script>
 
 <!-- SLIDE 1 -->
 <div id="slide1" class="slide">
@@ -195,12 +243,10 @@ cursor:pointer;
 <!-- SLIDE 2 -->
 <div id="slide2" class="slide">
 <div class="couple-name">
-<span class="name-left">Pratik</span>
-<span class="heart">❤️</span>
-<span class="name-right">Rutuja</span>
+Pratik <span class="heart">❤️</span> Rutuja
 </div>
-<p style="margin-top:20px;font-size:18px;" id="welcomeText"></p>
-<button onclick="enterMain()">Enter Invitation</button>
+<p id="welcomeText" style="margin-top:25px;"></p>
+<button onclick="enterMain()" class="yes-btn">Enter Invitation</button>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -223,13 +269,13 @@ cursor:pointer;
 
 <div class="section">
 <h2>Venue</h2>
-<p style="font-size:17px; color:#ff6b81;">🕚 26 April | 11:00 AM</p>
+<p style="color:#ff6b81;">🕚 26 April | 11:00 AM</p>
 <p><b>Renuka Banquet</b><br>
 Motinagar Main Rd, beside Datta Mandir,<br>
 Pusad, Maharashtra 445204</p>
-<a href="https://maps.app.goo.gl/SBVoCr5JrcQsXhw3A?g_st=aw" target="_blank">
-<button>Open in Google Maps</button>
-</a>
+<button class="yes-btn" onclick="window.open('https://maps.app.goo.gl/SBVoCr5JrcQsXhw3A?g_st=aw')">
+Open in Google Maps
+</button>
 </div>
 
 <div class="section">
@@ -242,11 +288,21 @@ Pusad, Maharashtra 445204</p>
 </div>
 </div>
 
-<div class="arrow-text">Click below to celebrate with us</div>
-<div class="arrow">⬇</div>
+<div class="section">
+<h2>Will you join us in our celebration?</h2>
+<button class="yes-btn" onclick="joinYes()">Yes</button>
+<button class="no-btn" onclick="joinNo()">No</button>
+</div>
 
-<button onclick="celebrate()">Celebrate With Us 🎆</button>
+</div>
 
+<!-- Popup -->
+<div id="popup">
+<div class="popup-box">
+<p id="popupMessage"></p>
+<br>
+<button onclick="closePopup()" class="yes-btn">Close</button>
+</div>
 </div>
 
 <audio id="music" src="romantic.mp4"></audio>
@@ -279,17 +335,31 @@ document.getElementById("minutes").innerHTML=Math.floor((distance%(1000*60*60))/
 document.getElementById("seconds").innerHTML=Math.floor((distance%(1000*60))/1000);
 },1000);
 
-/* Celebration */
+/* Join Logic */
 let musicStarted=false;
-function celebrate(){
+
+function joinYes(){
+showPopup("Thank you for accepting our invitation 💖<br><br>We look forward to celebrating together.");
 let music=document.getElementById("music");
-music.volume=0.7;
 if(!musicStarted){
 music.currentTime=46;
 music.play();
 musicStarted=true;
 }
-confetti({particleCount:180,spread:120,origin:{y:0.6}});
+confetti({particleCount:220,spread:130,origin:{y:0.6}});
+}
+
+function joinNo(){
+showPopup("We understand 💕<br><br>But you must join us for the wedding!");
+}
+
+function showPopup(message){
+document.getElementById("popupMessage").innerHTML=message;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
 }
 
 </script>
